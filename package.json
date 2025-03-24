@@ -1,0 +1,40 @@
+{
+  "name": "mida-nextjs",
+  "version": "1.0.0",
+  "description": "A Next.js component for Mida.so optimization integration",
+  "main": "dist/MidaScript.min.js",
+  "scripts": {
+    "build": "tsc && terser dist/MidaScript.js -o dist/MidaScript.min.js",
+    "prettify": "prettier -w src/ *.md"
+  },
+  "keywords": [
+    "mida",
+    "optimization",
+    "nextjs",
+    "ab-testing"
+  ],
+  "author": "Mida.so",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "next": ">=9.0.0",
+    "react": ">=16.8.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0",
+    "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "prettier": "^3.5.3",
+    "terser": "^5.39.0",
+    "tslib": "^2.8.1",
+    "typescript": "^4.5.0 || ^5.0.0"
+  },
+  "types": "./dist/MidaScript.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mida-so/mida-nextjs"
+  },
+  "bugs": {
+    "url": "https://github.com/mida-so/mida-nextjs/issues"
+  },
+  "homepage": "https://github.com/mida-so/mida-nextjs#readme"
+}
