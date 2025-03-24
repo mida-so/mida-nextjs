@@ -22,6 +22,7 @@ interface MidaScriptProps {
   antiFlickerTimeout?: number;
   scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
   isSPA?: boolean;
+  sync?: boolean;
 }
 
 export const MidaScript: React.FC<MidaScriptProps> = ({
@@ -30,6 +31,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
   antiFlickerTimeout = 3000,
   scriptAttributes = {},
   isSPA = true,
+  sync = false,
 }) => {
   try {
     if (!projectKey) {
@@ -59,7 +61,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
         <script
           {...scriptAttributes}
           type="text/javascript"
-          async
+          async={!sync}
           src={`https://cdn.mida.so/js/optimize.js?key=${projectKey}`}
         />
       </>

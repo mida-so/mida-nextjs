@@ -103,6 +103,8 @@ The `MidaScript` component accepts the following props:
 | `useAntiFlicker`    | `boolean`                                   | No       | `false` | Whether to include the anti-flicker script          |
 | `antiFlickerTimeout`| `number`                                    | No       | `3000`  | Timeout for anti-flicker script (in milliseconds)   |
 | `scriptAttributes`  | `React.ScriptHTMLAttributes<HTMLScriptElement>` | No   | `{}`    | Additional attributes to be added to the script tag |
+| `isSPA`             | `boolean`                                   | No       | `true`  | Whether the application is a Single Page Application|
+| `sync`              | `boolean`                                   | No       | `false` | Whether to load the script synchronously            |
 
 ## Development and Testing
 
