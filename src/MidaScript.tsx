@@ -21,6 +21,7 @@ interface MidaScriptProps {
   useAntiFlicker?: boolean;
   antiFlickerTimeout?: number;
   scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
+  isSPA?: boolean;
 }
 
 export const MidaScript: React.FC<MidaScriptProps> = ({
@@ -28,6 +29,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
   useAntiFlicker = false,
   antiFlickerTimeout = 3000,
   scriptAttributes = {},
+  isSPA = true,
 }) => {
   try {
     if (!projectKey) {
@@ -36,6 +38,8 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
     }
 
     const antiFlickerCode = `var timeout = ${antiFlickerTimeout}; !function(h,i,d,e){var t,n=h.createElement("style");n.id=e,n.innerHTML="body{opacity:0}",h.head.appendChild(n),t=d,i.rmfk=function(){var t=h.getElementById(e);t&&t.parentNode.removeChild(t)},setTimeout(i.rmfk,t)}(document,window,timeout,"abhide");`;
+    
+    const spaCode = isSPA ? `window.isSPA = true;` : '';
 
     return (
       <>
@@ -44,6 +48,12 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
           <script
             type="text/javascript"
             dangerouslySetInnerHTML={{ __html: antiFlickerCode }}
+          />
+        )}
+        {isSPA && (
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{ __html: spaCode }}
           />
         )}
         <script

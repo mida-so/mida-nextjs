@@ -31,19 +31,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MidaScript = void 0;
 var react_1 = __importDefault(require("react"));
-var script_1 = __importDefault(require("next/script"));
 var MidaScript = function (_a) {
-    var projectKey = _a.projectKey, _b = _a.useAntiFlicker, useAntiFlicker = _b === void 0 ? false : _b, _c = _a.antiFlickerTimeout, antiFlickerTimeout = _c === void 0 ? 3000 : _c, _d = _a.scriptAttributes, scriptAttributes = _d === void 0 ? {} : _d;
+    var projectKey = _a.projectKey, _b = _a.useAntiFlicker, useAntiFlicker = _b === void 0 ? false : _b, _c = _a.antiFlickerTimeout, antiFlickerTimeout = _c === void 0 ? 3000 : _c, _d = _a.scriptAttributes, scriptAttributes = _d === void 0 ? {} : _d, _e = _a.isSPA, isSPA = _e === void 0 ? true : _e;
     try {
         if (!projectKey) {
             console.error('Mida: Project Key is required');
             return null;
         }
         var antiFlickerCode = "var timeout = ".concat(antiFlickerTimeout, "; !function(h,i,d,e){var t,n=h.createElement(\"style\");n.id=e,n.innerHTML=\"body{opacity:0}\",h.head.appendChild(n),t=d,i.rmfk=function(){var t=h.getElementById(e);t&&t.parentNode.removeChild(t)},setTimeout(i.rmfk,t)}(document,window,timeout,\"abhide\");");
+        var spaCode = isSPA ? "window.isSPA = true;" : '';
         return (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("link", { rel: "preconnect", href: "https://cdn.mida.so" }),
-            useAntiFlicker && (react_1.default.createElement(script_1.default, { id: "mida-anti-flicker", strategy: "beforeInteractive", dangerouslySetInnerHTML: { __html: antiFlickerCode } })),
-            react_1.default.createElement(script_1.default, __assign({ id: "mida-optimize", src: "https://cdn.mida.so/js/optimize.js?key=".concat(projectKey) }, scriptAttributes, { async: true }))));
+            useAntiFlicker && (react_1.default.createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: { __html: antiFlickerCode } })),
+            isSPA && (react_1.default.createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: { __html: spaCode } })),
+            react_1.default.createElement("script", __assign({}, scriptAttributes, { type: "text/javascript", async: true, src: "https://cdn.mida.so/js/optimize.js?key=".concat(projectKey) }))));
     }
     catch (e) {
         console.error('Mida Script Error:', e);

@@ -19,6 +19,7 @@ interface MidaScriptProps {
     useAntiFlicker?: boolean;
     antiFlickerTimeout?: number;
     scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
+    isSPA?: boolean;
 }
 export declare const MidaScript: React.FC<MidaScriptProps>;
 export {};

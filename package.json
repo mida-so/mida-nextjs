@@ -1,6 +1,6 @@
 {
   "name": "mida-nextjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Next.js component for Mida.so optimization integration",
   "main": "dist/MidaScript.min.js",
   "scripts": {
