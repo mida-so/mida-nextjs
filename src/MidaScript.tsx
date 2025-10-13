@@ -23,6 +23,7 @@ interface MidaScriptProps {
   scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
   isSPA?: boolean;
   sync?: boolean;
+  server?: string;
 }
 
 export const MidaScript: React.FC<MidaScriptProps> = ({
@@ -32,6 +33,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
   scriptAttributes = {},
   isSPA = true,
   sync = false,
+  server,
 }) => {
   try {
     if (!projectKey) {
@@ -39,13 +41,16 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
       return null;
     }
 
+    // Determine CDN URL based on server prop
+    const cdnUrl = server ? `https://cdn-${server}.mida.so` : 'https://cdn.mida.so';
+
     const antiFlickerCode = `var timeout = ${antiFlickerTimeout}; !function(h,i,d,e){var t,n=h.createElement("style");n.id=e,n.innerHTML="body{opacity:0}",h.head.appendChild(n),t=d,i.rmfk=function(){var t=h.getElementById(e);t&&t.parentNode.removeChild(t)},setTimeout(i.rmfk,t)}(document,window,timeout,"abhide");`;
     
     const spaCode = isSPA ? `window.isSPA = true;` : '';
 
     return (
       <>
-        <link rel="preconnect" href="https://cdn.mida.so" />
+        <link rel="preconnect" href={cdnUrl} />
         {useAntiFlicker && (
           <script
             type="text/javascript"
@@ -62,7 +67,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
           {...scriptAttributes}
           type="text/javascript"
           async={!sync}
-          src={`https://cdn.mida.so/js/optimize.js?key=${projectKey}`}
+          src={`${cdnUrl}/js/optimize.js?key=${projectKey}`}
         />
       </>
     );
