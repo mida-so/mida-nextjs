@@ -93,6 +93,17 @@ To add a nonce attribute for Content Security Policy:
 />
 ```
 
+### Using Regional CDN Servers
+
+To use a regional CDN server (e.g., EU region), specify the `server` prop:
+
+```tsx
+<MidaScript
+  projectKey="YOUR_PROJECT_KEY"
+  server="eu" // Uses cdn-eu.mida.so instead of cdn.mida.so
+/>
+```
+
 ## Props
 
 The `MidaScript` component accepts the following props:
@@ -105,6 +116,7 @@ The `MidaScript` component accepts the following props:
 | `scriptAttributes`  | `React.ScriptHTMLAttributes<HTMLScriptElement>` | No   | `{}`    | Additional attributes to be added to the script tag |
 | `isSPA`             | `boolean`                                   | No       | `true`  | Whether the application is a Single Page Application|
 | `sync`              | `boolean`                                   | No       | `false` | Whether to load the script synchronously            |
+| `server`            | `string`                                    | No       | `undefined` | Regional CDN server (e.g., "eu" for cdn-eu.mida.so) |
 
 ## Development and Testing
 
