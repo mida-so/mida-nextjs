@@ -68,6 +68,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
+### Using Regional CDN Servers
+
+**Note (Important):** If your Mida account is on the **EU** region, use `server="eu"` so the script loads from `cdn-eu.mida.so` instead of the default US CDN.
+
+To use a regional CDN server (e.g., EU region), specify the `server` prop:
+
+```tsx
+<MidaScript
+  projectKey="YOUR_PROJECT_KEY"
+  server="eu" // Uses cdn-eu.mida.so instead of cdn.mida.so
+/>
+```
+
 ### Using Anti-Flicker Script
 
 To prevent flickering during A/B tests, you can enable the anti-flicker script:
@@ -90,17 +103,6 @@ To add a nonce attribute for Content Security Policy:
   scriptAttributes={{
     nonce: 'your-nonce-value',
   }}
-/>
-```
-
-### Using Regional CDN Servers
-
-To use a regional CDN server (e.g., EU region), specify the `server` prop:
-
-```tsx
-<MidaScript
-  projectKey="YOUR_PROJECT_KEY"
-  server="eu" // Uses cdn-eu.mida.so instead of cdn.mida.so
 />
 ```
 
