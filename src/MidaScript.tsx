@@ -44,7 +44,7 @@ export const MidaScript: React.FC<MidaScriptProps> = ({
     // Determine CDN URL based on server prop
     const cdnUrl = server ? `https://cdn-${server}.mida.so` : 'https://cdn.mida.so';
 
-    const antiFlickerCode = `var timeout = ${antiFlickerTimeout}; !function(h,i,d,e){var t,n=h.createElement("style");n.id=e,n.innerHTML="body{opacity:0}",h.head.appendChild(n),t=d,i.rmfk=function(){var t=h.getElementById(e);t&&t.parentNode.removeChild(t)},setTimeout(i.rmfk,t)}(document,window,timeout,"abhide");`;
+    const antiFlickerCode = `(function(d,w){var id="abhide";var timeout=${antiFlickerTimeout};function apply(){if(d.getElementById(id))return;var style=d.createElement("style");style.id=id;style.textContent="html{visibility:hidden!important}";d.documentElement.appendChild(style);}function remove(){var el=d.getElementById(id);if(el)el.remove();}apply();w.rmfk=remove;setTimeout(remove,timeout);})(document,window);`;
     
     const spaCode = isSPA ? `window.isSPA = true;` : '';
 
